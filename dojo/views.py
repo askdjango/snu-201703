@@ -1,6 +1,18 @@
+import os
 import json
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+
+
+def image_download(request):
+    filepath = os.path.join(settings.BASE_DIR, 'flower.jpg')
+    filename = os.path.basename(filepath)
+
+    with open(filepath, 'rb') as f:
+        response = HttpResponse(f, content_type='image/jpeg')
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
+        return response
 
 
 def json_response(request):
