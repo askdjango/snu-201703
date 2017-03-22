@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 
@@ -8,8 +8,9 @@ def json_response(request):
         'message': '안녕, 파이썬&장고',
         'items': ['파이썬', '장고', 'Celery', 'Azure', 'AWS'],
     }
-    json_string = json.dumps(data, ensure_ascii=False)
-    return HttpResponse(json_string, content_type='application/json')
+    # json_string = json.dumps(data, ensure_ascii=False)
+    # return HttpResponse(json_string, content_type='application/json')
+    return JsonResponse(data, json_dumps_params={'ensure_ascii': False})
 
 
 def mysum(request, numbers):
