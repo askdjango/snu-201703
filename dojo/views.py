@@ -3,6 +3,7 @@ import json
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from .utils import get_nametag_file
 
 
 def image_download(request):
@@ -36,4 +37,9 @@ def mysum(request, numbers):
 
 def hello(request, name, age):
     return HttpResponse('안녕하세요. {}. {}살이시네요.'.format(name, age))
+
+
+def nametag(request, name):
+    f = get_nametag_file(name)
+    return HttpResponse(f, content_type='image/png')
 
