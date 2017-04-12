@@ -22,3 +22,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     test_field = models.IntegerField(default=10)
 
+    def __str__(self):
+        return self.title
+
