@@ -3,11 +3,11 @@ from django.utils.safestring import mark_safe
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'content_size', 'tags', 'lnglat']
+    list_display = ['id', 'title', 'status', 'content_size', 'tags', 'lnglat']
     # list_display_links = ['title']
     list_editable = ['title']
     search_fields = ['title']
-    list_filter = ['created_at']
+    list_filter = ['created_at', 'status']
 
     def content_size(self, post):
         html = '<span style="color: blue;">{}</span>글자'.format(len(post.content))

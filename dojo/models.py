@@ -7,8 +7,15 @@ def lnglat_validator(value):
         raise forms.ValidationError('Invalid LngLat Value')
 
 class Post(models.Model):
+    STATUS_CHOICES = [
+        ('d', 'Draft'),
+        ('p', 'Published'),
+        ('w', 'Withdraw'),
+    ]
+
     title = models.CharField(max_length=100)
     content = models.TextField()
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     tags = models.CharField(max_length=100, blank=True)
     lnglat = models.CharField(max_length=50,
             validators=[lnglat_validator])
