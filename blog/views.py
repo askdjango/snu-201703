@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from .models import Post
 
@@ -17,7 +17,10 @@ def post_list(request):
 
 
 def post_detail(request, id):
-    post = Post.objects.get(id=id)
+    try:
+        post = Post.objects.get(id=id)
+    except Post.DoesNotExist:
+        raise Http404
     return render(request, 'blog/post_detail.html', {
         'post': post,
     })
