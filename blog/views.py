@@ -17,5 +17,8 @@ def post_list(request):
 
 
 def post_detail(request, id):
-    return HttpResponse('{}번글을 보시겠습니다.'.format(id))
+    post = Post.objects.get(id=id)
+    return render(request, 'blog/post_detail.html', {
+        'post': post,
+    })
 
