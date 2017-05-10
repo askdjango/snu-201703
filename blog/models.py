@@ -8,6 +8,7 @@ class Post(models.Model):
     hits = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    tag_set = models.ManyToManyField('Tag')
 
     class Meta:
         ordering = ['-id']
@@ -19,4 +20,11 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post)
     message = models.TextField()
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
 
