@@ -8,7 +8,7 @@ class Post(models.Model):
     hits = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tag_set = models.ManyToManyField('Tag')
+    tag_set = models.ManyToManyField('Tag', blank=True)
 
     class Meta:
         ordering = ['-id']
