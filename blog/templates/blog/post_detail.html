@@ -6,3 +6,12 @@
 <hr/>
 
 <a href="/blog/">목록으로</a>
+
+{% if prev_post %}
+    <a href="/blog/{{ prev_post.id }}/">이전</a>
+{% endif %}
+
+{% if next_post %}
+    <a href="/blog/{{ next_post.id }}/">다음</a>
+{% endif %}
+
