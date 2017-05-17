@@ -14,7 +14,7 @@ class Post(models.Model):
         ('w', 'Withdraw'),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='dojo_post_set')
 
     title = models.CharField(max_length=100)
     content = models.TextField()

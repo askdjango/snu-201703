@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Post(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_post_set')
     author = models.CharField(max_length=20)
     title = models.CharField(max_length=100)
     content = models.TextField()
