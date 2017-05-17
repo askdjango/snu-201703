@@ -1,5 +1,6 @@
 import re
 from django import forms
+from django.conf import settings
 from django.db import models
 
 def lnglat_validator(value):
@@ -12,6 +13,8 @@ class Post(models.Model):
         ('p', 'Published'),
         ('w', 'Withdraw'),
     ]
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     title = models.CharField(max_length=100)
     content = models.TextField()
