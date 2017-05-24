@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^weblog/', include('blog.urls', namespace='blog')),
     url(r'^dojo/', include('dojo.urls')),
+    url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
 
 if settings.DEBUG:
