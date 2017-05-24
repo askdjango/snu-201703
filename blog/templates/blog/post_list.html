@@ -28,6 +28,7 @@
             <li>
                 <a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a>
                 hit : {{ post.hits }}
+                {{ post.created_at|timesince }}
             </li>
         {% endfor %}
     </ul>
