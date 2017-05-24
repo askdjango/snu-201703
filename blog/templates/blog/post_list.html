@@ -19,9 +19,7 @@
     <ul>
         {% for post in post_list %}
             <li>
-                <a href="/blog/{{ post.id }}/">
-                    {{ post.title }}
-                </a>
+                <a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a>
                 hit : {{ post.hits }}
             </li>
         {% endfor %}
