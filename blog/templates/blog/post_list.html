@@ -11,6 +11,13 @@
 
     <h1>AskDjango</h1>
 
+    {% comment %}
+        이 부분은 주석입니다.
+        처리되지 않을거예요.
+        {% for post in post_list %}
+        {% endfor %}
+    {% endcomment %}
+
     <form action="" method="get">
         <input type="text" name="q" value="{{ q }}"/>
         <input type="submit" value="검색" />
