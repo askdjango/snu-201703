@@ -1,17 +1,20 @@
-<h1>{{ post.title }}</h1>
-<h2>by {{ post.author }}</h2>
+{% extends "blog/layout.html" %}
 
-{{ post.content|linebreaks }}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <h2>by {{ post.author }}</h2>
 
-<hr/>
+    {{ post.content|linebreaks }}
 
-<a href="/blog/">목록으로</a>
+    <hr/>
 
-{% if prev_post %}
-    <a href="/blog/{{ prev_post.id }}/">이전</a>
-{% endif %}
+    <a href="/blog/">목록으로</a>
 
-{% if next_post %}
-    <a href="/blog/{{ next_post.id }}/">다음</a>
-{% endif %}
+    {% if prev_post %}
+        <a href="/blog/{{ prev_post.id }}/">이전</a>
+    {% endif %}
 
+    {% if next_post %}
+        <a href="/blog/{{ next_post.id }}/">다음</a>
+    {% endif %}
+{% endblock %}
