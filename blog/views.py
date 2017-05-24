@@ -1,3 +1,4 @@
+import datetime
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.db.models import F
@@ -26,5 +27,18 @@ def post_detail(request, id):
         'post': post,
         'next_post': next_post,
         'prev_post': prev_post,
+    })
+
+
+def archives(request):
+    day_list = []
+
+    start = datetime.datetime(2017, 1, 1)
+    for i in range(365):
+        delta = datetime.timedelta(days=i)
+        day_list.append(start + delta)
+
+    return render(request, 'blog/archives.html', {
+        'day_list': day_list,
     })
 

@@ -1,0 +1,15 @@
+
+{% for day in day_list %}
+    {% comment %}
+        {% ifchanged %}
+            <h1>{{ day|date:"F" }}</h1>
+        {% endifchanged %}
+    {% endcomment %}
+
+    {% ifchanged day.month %}
+        <h1>{{ day|date:"F" }}</h1>
+    {% endifchanged %}
+
+    {{ day }}<br/>
+{% endfor %}
+
