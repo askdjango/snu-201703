@@ -8,6 +8,15 @@ from .models import Post
 def post_list(request):
     post_list = Post.objects.all()
 
+    '''
+    print('----')
+    print(request.GET)
+    print(request.GET['q'])
+    print(request.GET.get('q'))
+    print(request.GET.getlist('q'))  # MultiValueDict에서만 지원
+    photo_list = request.FILES.getlist('photo')
+    '''
+
     q = request.GET.get('q', '')
     if q:
         post_list = post_list.filter(title__icontains=q)
