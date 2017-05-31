@@ -59,6 +59,7 @@ def post_new(request):
         if form.is_valid():
             print('VALID !!!')
             print(form.cleaned_data)  # dict
+            form.save()  # ModelForm에서만 지원하는 함수
             return redirect('blog:post_list')
     else:
         form = PostForm()
