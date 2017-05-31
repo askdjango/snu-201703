@@ -3,6 +3,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.db.models import F
 from .models import Post
+from .forms import PostForm
 
 
 def post_list(request):
@@ -50,4 +51,12 @@ def archives(request):
     return render(request, 'blog/archives.html', {
         'day_list': day_list,
     })
+
+
+def post_new(request):
+    form = PostForm()
+    return render(request, 'blog/post_form.html', {
+        'form': form,
+    })
+
 
