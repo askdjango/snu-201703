@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.db import models
+from .validators import min_length_3_validator
 
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_post_set')
     author = models.CharField(max_length=20)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, validators=[min_length_3_validator])
     content = models.TextField()
     hits = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
