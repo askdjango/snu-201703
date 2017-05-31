@@ -1,6 +1,6 @@
 import datetime
 from django.http import Http404, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import F
 from .models import Post
 from .forms import PostForm
@@ -54,7 +54,15 @@ def archives(request):
 
 
 def post_new(request):
-    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            print('VALID !!!')
+            print(form.cleaned_data)  # dict
+            return redirect('blog:post_list')
+    else:
+        form = PostForm()
+
     return render(request, 'blog/post_form.html', {
         'form': form,
     })
