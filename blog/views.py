@@ -1,4 +1,5 @@
 import datetime
+from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import F
@@ -53,13 +54,17 @@ def archives(request):
     })
 
 
+@login_required
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             print('VALID !!!')
             print(form.cleaned_data)  # dict
-            form.save()  # ModelForm에서만 지원하는 함수
+            post = form.save(commit=False)  # ModelForm에서만 지원하는 함수
+            post.user = request.user
+            # request.META['REMOTE_ADDR']
+            post.save()
             return redirect('blog:post_list')
     else:
         form = PostForm()
