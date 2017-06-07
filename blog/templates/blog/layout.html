@@ -29,6 +29,15 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <ul class="nav navbar-nav pull-right">
+            {% if user.is_authenticated %}
+                <li><a href="{% url "profile" %}">Profile</a></li>
+                <li><a href="#">Logout</a></li>
+            {% else %}
+                <li><a href="{% url "login" %}?next={{ request.path }}">Login</a></li>
+                <li><a href="{% url "signup" %}">Signup</a></li>
+            {% endif %}
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
